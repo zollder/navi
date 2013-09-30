@@ -23,4 +23,5 @@ Makefile
 .dep.mk
 .qnx_internal.mk
 *.mk
+.cproject
 
