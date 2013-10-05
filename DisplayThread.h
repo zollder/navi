@@ -2,24 +2,33 @@
 #include <iostream.h>
 #include <pthread.h>
 
+#include "BaseThread.h"
+#include "Mutex.h"
+
 #ifndef displaythread_h
 #define displaythread_h
-
-#include "BaseThread.h"
 
 //-----------------------------------------------------------------------------------------
 // DisplayThread interface.
 //-----------------------------------------------------------------------------------------
 class DisplayThread : public BaseThread
 {
-	public:
-		// constructor
-		DisplayThread();
+		Mutex& mutex;
 
-		// virtual destructor
+	public:
+		//-----------------------------------------------------------------------------------------
+		// Constructor
+		//-----------------------------------------------------------------------------------------
+		DisplayThread(Mutex& mutexRef);
+
+		//-----------------------------------------------------------------------------------------
+		// Destructor
+		//-----------------------------------------------------------------------------------------
 		~DisplayThread();
 
-		// overriding base class method
+		//-----------------------------------------------------------------------------------------
+		// Overrides BaseThread's run() method
+		//-----------------------------------------------------------------------------------------
 		void* run();
 };
 

@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <iostream.h>
-#include <pthread.h>
 #include <unistd.h>
+#include <pthread.h>
+
+#include "DisplayThread.h"
 
 //---------------------------------------------------------------------------------------------
 // DisplayThread subclass implementation.
 //---------------------------------------------------------------------------------------------
 
-	#include "DisplayThread.h"
-
 	//-----------------------------------------------------------------------------------------
 	// Constructor
 	//-----------------------------------------------------------------------------------------
-	DisplayThread::DisplayThread()
+	DisplayThread::DisplayThread(Mutex& mutexRef) : mutex(mutexRef)
 	{
 		cout << "Constructing DisplayThread ..." << endl;
 	}
@@ -31,12 +31,14 @@
 	//-----------------------------------------------------------------------------------------
 	void* DisplayThread::run()
 	{
-		for (int i = 0; i < 5; i++)
+		mutex.lock();
+		for (int i = 0; i < 10; i++)
 		{
 			printf("DisplayThread %lu running - %d\n",  (long unsigned int)getThreadId(), i+1);
-			sleep(2);
+			sleep(1);
 		}
 
 		printf("DisplayThread done %lu\n", (long unsigned int)getThreadId());
+		mutex.unlock();
 		return NULL;
 	}

@@ -2,24 +2,27 @@
 #include <iostream.h>
 #include <pthread.h>
 
+#include "BaseThread.h"
+#include "Mutex.h"
+
 #ifndef acceleratorthread_h
 #define acceleratorthread_h
-
-#include "BaseThread.h"
 
 //-----------------------------------------------------------------------------------------
 // AcceleratorThread interface.
 //-----------------------------------------------------------------------------------------
 class AcceleratorThread : public BaseThread
 {
+		Mutex& mutex;
+
 	public:
 		// constructor
-		AcceleratorThread();
+		AcceleratorThread(Mutex& mutexRef);
 
-		// virtual destructor
+		// destructor
 		~AcceleratorThread();
 
-		// overriding base class method
+		// overrides BaseThread's run() method
 		void* run();
 };
 

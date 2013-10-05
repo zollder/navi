@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <iostream.h>
-#include <pthread.h>
 #include <unistd.h>
+#include <pthread.h>
+
+#include "AcceleratorThread.h"
 
 //---------------------------------------------------------------------------------------------
 // AcceleratorThread subclass implementation.
 //---------------------------------------------------------------------------------------------
 
-	#include "AcceleratorThread.h"
-
 	//-----------------------------------------------------------------------------------------
 	// Constructor
 	//-----------------------------------------------------------------------------------------
-	AcceleratorThread::AcceleratorThread()
+	AcceleratorThread::AcceleratorThread(Mutex& mutexRef) : mutex(mutexRef)
 	{
 		cout << "Constructing AcceleratorThread ..." << endl;
 	}
@@ -31,12 +31,14 @@
 	//-----------------------------------------------------------------------------------------
 	void* AcceleratorThread::run()
 	{
-		for (int i = 0; i < 5; i++)
+		mutex.lock();
+		for (int i = 0; i < 10; i++)
 		{
 			printf("AcceleratorThread %lu running - %d\n",  (long unsigned int)getThreadId(), i+1);
-			sleep(2);
+			sleep(1);
 		}
 
 		printf("AcceleratorThread done %lu\n", (long unsigned int)getThreadId());
+		mutex.unlock();
 		return NULL;
 	}

@@ -10,10 +10,12 @@ int main()
 {
 	cout << "Main thread started!" << endl;
 
-	DisplayThread* displayThread = new DisplayThread();
-	AcceleratorThread* acceleratorThread = new AcceleratorThread();
+	Mutex mutex;
+	DisplayThread* displayThread = new DisplayThread(mutex);
+	AcceleratorThread* acceleratorThread = new AcceleratorThread(mutex);
 
 	displayThread->start();
+	delay(1);
 	acceleratorThread->start();
 
 	displayThread->join();

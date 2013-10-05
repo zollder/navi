@@ -27,6 +27,7 @@ class BaseThread
 		// detaches thread
 		int detach();
 
+		// sets thread id
 		void setThreadId(int id);
 
 		// returns reference to instantiated thread object (itself)
