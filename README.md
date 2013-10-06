@@ -8,9 +8,9 @@ X= 0.0, Y = 0.0, Z = 0.0
 Initial value of velocity (on the 3 axes)
 Vx= 0.0, Vy = 0.0, Vz = 0.0
 Design consists of two tasks:
-#Data Acquisition and Processing (DAP)
+###Data Acquisition and Processing (DAP)
     Updates X, Y, Z, Vx, Vy and Vz every 1 second
-#Data Display
+###Data Display
     Displays X, Y, Z, Vx, Vy and Vz every 5 seconds
 
 Get accelerometer data
