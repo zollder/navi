@@ -6,7 +6,7 @@
 #include "DisplayThread.h"
 #include "AcceleratorThread.h"
 
-int main()
+int main(void)
 {
 	cout << "Main thread started!" << endl;
 
@@ -25,5 +25,5 @@ int main()
 	delete acceleratorThread;
 
 	cout << "Main thread done!" << endl;
-	exit(0);
+	return EXIT_SUCCESS;
 }
