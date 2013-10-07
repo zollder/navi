@@ -11,7 +11,7 @@
 	BaseThread::BaseThread()
 	{
 		cout << "Constructing BaseThread ..." << endl;
-		setThreadId(0);
+		setThreadId(1);
 		setRunning(false);
 		setDetached(false);
 	}

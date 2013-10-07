@@ -15,7 +15,11 @@ class AcceleratorThread : public BaseThread
 {
 		Mutex& mutex;
 
+	//-----------------------------------------------------------------------------------------
+	// Public members
+	//-----------------------------------------------------------------------------------------
 	public:
+
 		// constructor
 		AcceleratorThread(Mutex& mutexRef);
 
