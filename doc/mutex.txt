@@ -1,0 +1,69 @@
+pthread_mutex_t
+=================
+
+#include <pthread.h> 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; 
+	Macro can be used if initializing statically 
+Locking: 
+	pthread_mutex_lock (&mutex)
+Unlocking: 
+	pthread_mutex_unlock (&mutex)
+
+int count = 0; //global
+void* produce( void * arg ) { 
+  while( 1 ) { 
+	pthread_mutex_lock( &mutex ); 
+	printf( "Produced %d\n", count++ ); 
+	pthread_mutex_unlock( &mutex ); 
+  } 
+  return( 0 ); 
+}
+
+pthread_cond_t
+==============
+
+Conditional variables (CondVars) can be used to ensure desired ordering of producer and consumer
+
+#include <pthread.h> 
+pthread_cond_t   cond= PTHREAD_COND_INITIALIZER; 
+	Macro can be used if initializing statically 
+Blocking: 
+	pthread_cond_wait (&cond, &mutex)
+		Blocks on cond and unlocks mutex
+		Mutex must already have been locked
+Unblocking: 
+	pthread_cond_signal (&cond)
+		Unblocks a thread waiting on cond
+		The mutex is reacquired before the blocked thread is unblocked
+
+
+==example==
+int count = 0; //global
+int condition = 0; //global
+
+void *produce( void * arg ) { 
+  while( 1 ) { 
+	pthread_mutex_lock( &mutex ); 
+	while( condition == 1 ) 
+	   pthread_cond_wait( &cond, &mutex ); 
+	printf( "Produced %d\n", count++ ); 
+	condition = 1; 
+	pthread_cond_signal( &cond ); 
+	pthread_mutex_unlock( &mutex ); 
+  } 
+  return( 0 ); 
+}
+
+int consume( void ) { 
+  while( 1 ) { 
+	pthread_mutex_lock( &mutex ); 
+	while( condition == 0 ) 
+	   pthread_cond_wait( &cond, &mutex ); 
+	printf( "Consumed %d\n", count ); 
+	condition = 0; 
+	pthread_cond_signal( &cond ); 
+	pthread_mutex_unlock( &mutex ); 
+  } 
+   return( 0 ); 
+} 
+

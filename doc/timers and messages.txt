@@ -1,0 +1,101 @@
+Channels and Timers
+===================
+
+Objects in QNX that can be used to send/receive messages or pulses
+
+Instantiated by ChannelCreate() in the server
+Instantiated by ConnectAttach() in the client
+
+ChannelCreate
+-------------
+#include <sys/neutrino.h> 
+int ChannelCreate( unsigned flags );
+	flags value : _NTO_CHF_FIXED_PRIORITY
+	Suppress priority inheritance when receiving messages. 
+	Receiving threads won't change their priorities to those of the sending threads. 
+
+E.g.: 
+int chid = ChannelCreate(_NTO_CHF_FIXED_PRIORITY)
+	This should be done in the DAP and DD threads
+
+ConnectAttach
+-------------
+#include <sys/neutrino.h> 
+int  ConnectAttach ( uint32_t nd, pid_t pid, int chid, unsigned index, int flags ); 
+	The only relevant argument is chid
+	The channel ID, returned by ChannelCreate(), of the channel to connect to the process.
+	Set all other arguments to 0
+
+E.g. : 
+int ConnectionID = ConnectAttach(0, 0, chid, 0, 0)
+	This is called by the Timers
+
+Creating a Pulse event
+----------------------
+The connection is used by the Timers to send periodic pulses to the DAP and DD processes
+Pulses are special signals in QNX
+	struct sigevent PulseEvent;
+
+Pulse Initialization: SIGEV_PULSE_INIT (&PulseEvent, ConnectionID, priority, PulseCode, Value)
+	Priority is typically SIGEV_PULSE_PRIO_INHERIT : same as pulse generating process
+	PulseCode is between _PULSE_CODE_MINAVAIL to _PULSE_CODE_MAXAVAIL
+	Value is a 32 bit data to be interpreted by receiver: NULL in our case
+
+Creating a Timer
+----------------
+#include <signal.h> 
+#include <time.h> 
+int timer_create( clockid_t clock_id, struct sigevent * evp, timer_t * timer_id );
+	We want clock to be posix defined real time clock
+		clock_id = CLOCK_REALTIME
+	evp is the pointer to the pulse event we initialized
+	timer_id is the returned handle to the timer
+
+itimerspec
+----------
+Time is stored at the nanosecond granularity
+An itimerspec structure consisting of two long variables is used 
+	One keeps seconds and the other nanoseconds
+	E.g. struct itimerspec mytime;
+	
+Initial pulse time on 1.5 seconds can be set
+	mytime.it_value.tv_sec = 1; 			// 1 second
+	mytime.it_value.tv_nsec = 500000000; 	// .5 second
+Periodic pulse with interval of 2 seconds can be set
+	mytime.it_interval.tv_sec = 2; // 2 second
+	mytime.it_interval.tv_nsec = 0;
+Finally setting the timing data on the Timer
+	timer_settime(timer_id, flag, &mytime, time_until_expiry);
+	Flag is 0 for time relative to current time
+	time_until_expiry is NULL because we are not interested in time until expiry of last set time
+	Timer will now send out pulses via the connection
+
+Receiving the Pulses
+--------------------
+Pulses are received by server task (DAP or DD)
+	int PulseRecv = MsgReceive (chid, &msg, sizeof(msg), MessageInfo)
+	Function blocks until the pulse is received
+		PulseRecv should be 0 for pulse, 1 for message
+	MessageInfo is NULL
+	We don’t care about msg either
+
+Measuring the Time
+------------------
+#include <sys/neutrino.h> 
+#include <inttypes.h> 
+uint64_t ClockCycles( void );
+	Gives value of a free running 64 bit cycle counter
+
+CPUFrequency 
+	SYSPAGE_ENTRY(qtime)->cycles_per_sec field gives the number of ClockCycles() increments in one second. 
+
+Exec_time = (Stop_Cycles – Start_Cycles)/CPUFrequency
+Calculate wcet, bcet and average
+	Don’t run threads concurrently while measuring time!!
+	Don’t use condvars while measuring time!!
+
+	
+
+
+
+

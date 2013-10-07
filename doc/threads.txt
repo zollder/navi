@@ -1,0 +1,53 @@
+Thread Management
+=================
+
+pthread_create
+--------------
+#include <pthread.h> 
+int pthread_create ( pthread_t* thread, const pthread_attr_t* attr,   void* (*start_routine)(void* ), void* arg ); 
+
+Arguments:
+	thread: 
+		Pointer to a pthread_t object where the function can store the thread ID of the new thread, 
+		e.g. threads DAP, DD in main
+	attr: 
+		A pointer to a pthread_attr_t structure that specifies the attributes of the new thread. 
+		Use pthread_attr_init() or NULL for setting default attributes
+	start_routine: 
+		The routine where the thread begins, with arg as its only argument, 
+		e.g. the functions for DAP and DD
+	arg: 
+		The argument to pass to start_routine. In our case NULL.
+
+pthread_join
+------------
+#include <pthread.h> 
+int pthread_join ( pthread_t* thread, void** value_ptr); 
+
+Arguments:
+	thread: 
+		The target thread whose termination you're waiting for. 
+	value_ptr: 
+		NULL, or a pointer to a location where the function can store the value passed to pthread_exit() 
+		by the target thread. In our case NULL
+
+==Example==
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <pthread.h> 
+
+void* function( void* arg ) { 
+	printf( "This is thread %d\n", pthread_self() ); 
+	sleep  (100);
+	return( 0 ); 
+} 
+
+int main( void ) { 
+	pthread_t   func_thread;
+	pthread_create( &func_thread, NULL, &function, NULL ); 
+	/* Allow threads to run for 60 seconds. */ 
+	sleep( 60 ); 
+	 pthread_join( &func_thread, NULL);  // will block here
+	return EXIT_SUCCESS; 
+}
+
