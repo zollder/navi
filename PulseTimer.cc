@@ -16,7 +16,7 @@
 		setConnectionId(ConnectAttach(0, 0, channelId, 0, 0));
 		setDetached(false);
 
-		// initialize notification structure
+		// initialize notification (event) structure
 		SIGEV_PULSE_INIT(&event, getConnectionId(), SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_TIMER, NULL);
 
 		// create timer object within the kernel and initialize timerId (returns reference to timerId)
@@ -49,7 +49,7 @@
 
 
 	//-----------------------------------------------------------------------------------------
-	// Starts timer or updates its running status.
+	// Starts timer and updates its running status.
 	//-----------------------------------------------------------------------------------------
 	int PulseTimer::start()
 	{
@@ -90,10 +90,11 @@
 	//-----------------------------------------------------------------------------------------
 	int PulseTimer::reset()
 	{
+		// periodic timer: set same values to it_value and it_interval
 		timer.it_value.tv_sec = getSeconds();
 		timer.it_value.tv_nsec = getNanoseconds();
-		timer.it_interval.tv_sec = 0;
-		timer.it_interval.tv_nsec = 0;
+		timer.it_interval.tv_sec = getSeconds();
+		timer.it_interval.tv_nsec = getNanoseconds();
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -131,7 +132,7 @@
 	//-----------------------------------------------------------------------------------------
 	// Returns seconds portion (converted) of the timer interval.
 	//-----------------------------------------------------------------------------------------
-	int PulseTimer::getSeconds()
+	long PulseTimer::getSeconds()
 	{
 		return seconds;
 	}
@@ -139,7 +140,7 @@
 	//-----------------------------------------------------------------------------------------
 	// Returns nanoseconds portion (converted) of the timer interval.
 	//-----------------------------------------------------------------------------------------
-	int PulseTimer::getNanoseconds()
+	long PulseTimer::getNanoseconds()
 	{
 		return nanoseconds;
 	}
@@ -189,7 +190,7 @@
 	//-----------------------------------------------------------------------------------------
 	void PulseTimer::setInterval(double interval)
 	{
-		seconds = floor(interval);
+		seconds = interval - floor(interval);
 		nanoseconds = (interval - seconds)*pow(10,9);
 	}
 

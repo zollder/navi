@@ -1,9 +1,11 @@
 #include <cstdlib>
 #include <iostream.h>
-#include <math.h>
 #include <time.h>
 #include <sys/siginfo.h>
 #include <sys/neutrino.h>
+
+// include -lmath linker option at compile time to avoid "undefined reference" error
+#include <math.h>
 
 #ifndef pulsetimer_h
 #define pulsetimer_h
