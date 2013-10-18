@@ -14,12 +14,14 @@
 		setThreadId(1);
 		setRunning(false);
 		setDetached(false);
+		setChannelId(createChannel());
 	}
 
 	//-----------------------------------------------------------------------------------------
 	// Destroys thread object.
 	// - if the thread is running, mark it as detached to reclaim its storage upon termination
 	// - terminate thread, if it's running
+	// - destroy communication channel if it was successfully created by constructor
 	//-----------------------------------------------------------------------------------------
 	BaseThread::~BaseThread()
 	{
@@ -30,6 +32,10 @@
 
 		if (isRunning())
 			pthread_cancel(threadId);
+
+		int chId = getChannelId();
+		if (chId != -1)
+			ChannelDestroy(chId);
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -130,11 +136,42 @@
 	}
 
 	//-----------------------------------------------------------------------------------------
-	// Returns thread id for display or logging purposes.
+	// Sets thread id for display or logging purposes.
 	//-----------------------------------------------------------------------------------------
 	void BaseThread::setThreadId(int id)
 	{
 		threadId = id;
 	}
 
+	//-----------------------------------------------------------------------------------------
+	// Returns channel id.
+	//-----------------------------------------------------------------------------------------
+	int BaseThread::getChannelId()
+	{
+		return channelId;
+	}
 
+	//-----------------------------------------------------------------------------------------
+	// Sets channel id.
+	//-----------------------------------------------------------------------------------------
+	void BaseThread::setChannelId(int chId)
+	{
+		channelId = chId;
+	}
+
+	//-----------------------------------------------------------------------------------------
+	// Creates a channel that can receive messages and pulses.
+	// ConnectAttach() should be called from the timer object in order to establish connection.
+	//-----------------------------------------------------------------------------------------
+	int BaseThread::createChannel()
+	{
+		// disable priority inheritance with _NTO_CHF_FIXED_PRIORITY option
+		int chId = ChannelCreate(_NTO_CHF_FIXED_PRIORITY);
+		if (chId == -1)
+				printf("Error creating channel \n");
+		else
+			// for debugging purpose only
+			printf("Channel successfully created \n");
+
+		return chId;
+	}

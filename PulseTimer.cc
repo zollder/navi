@@ -2,7 +2,7 @@
 #include "PulseTimer.h"
 
 //---------------------------------------------------------------------------------------------
-// PulseTimer class implementation.
+// Periodic PulseTimer class implementation.
 //---------------------------------------------------------------------------------------------
 
 	//-----------------------------------------------------------------------------------------
@@ -12,18 +12,14 @@
 	{
 		cout << "Creating and initializing PulseTimer ..." << endl;
 
-		// attach channel to the timer
-		setConnectionId(ConnectAttach(0, 0, channelId, 0, 0));
-		setDetached(false);
-
-		// initialize notification (event) structure
-		SIGEV_PULSE_INIT(&event, getConnectionId(), SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_TIMER, NULL);
-
-		// create timer object within the kernel and initialize timerId (returns reference to timerId)
-		timer_create(CLOCK_REALTIME, &event, &timerId);
+		// connect client to the channel
+		connectionAttach(channelId);
 
 		// convert interval to seconds and nanoseconds and initialize corresponding members
 		setInterval(interval);
+
+		// initialize notification structure and create timer
+		createTimer();
 
 		setRunning(false);
 	}
@@ -47,6 +43,53 @@
 			printf("Error removing timer \n");
 	}
 
+	//-----------------------------------------------------------------------------------------
+	// Connects client (pulse timer) to the server (corresponding thread).
+	// Establishes a connection between the calling process and the channel specified by chId.
+	//-----------------------------------------------------------------------------------------
+	void PulseTimer::connectionAttach(int chId)
+	{
+		int connectId = ConnectAttach(0, 0, chId, 0, 0);
+		if (connectId == -1)
+		{
+			printf("Error attaching connection \n");
+			setDetached(true);
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			printf("Connection attached successfully \n");
+			setConnectionId(connectId);
+			setDetached(false);
+		}
+	}
+
+	//-----------------------------------------------------------------------------------------
+	// Converts specified time interval into seconds and nanoseconds
+	//-----------------------------------------------------------------------------------------
+	void PulseTimer::setInterval(double interval)
+	{
+		seconds = floor(interval);
+		nanoseconds = (interval - seconds)*pow(10,9);
+	}
+
+	//-----------------------------------------------------------------------------------------
+	// Initializes notification.
+	// Creates timer object within the kernel and initializes timerId (returns reference to timerId)
+	//-----------------------------------------------------------------------------------------
+	void PulseTimer::createTimer()
+	{
+		SIGEV_PULSE_INIT(&event, getConnectionId(), SIGEV_PULSE_PRIO_INHERIT, PULSE_FROM_TIMER, NULL);
+
+		int timer = timer_create(CLOCK_REALTIME, &event, &timerId);
+		if (timer == -1)
+		{
+			printf("Timer creation error \n");
+			exit(EXIT_FAILURE);
+		}
+		else
+			printf("Timer created successfully \n");
+	}
 
 	//-----------------------------------------------------------------------------------------
 	// Starts timer and updates its running status.
@@ -59,7 +102,10 @@
 		// start the timer and running status accordingly
 		int result = timer_settime(timerId, 0, &timer, NULL);
 		if (result == 0)
+		{
 			this->setRunning(true);
+			printf("Timer started \n");
+		}
 		else
 			printf("Error creating timer \n");
 
@@ -88,11 +134,11 @@
 	//-----------------------------------------------------------------------------------------
 	// (Re)Initializes the guts of the timer structure.
 	//-----------------------------------------------------------------------------------------
-	int PulseTimer::reset()
+	void PulseTimer::reset()
 	{
-		// periodic timer: set same values to it_value and it_interval
-		timer.it_value.tv_sec = getSeconds();
-		timer.it_value.tv_nsec = getNanoseconds();
+		// periodic timer: will go off in 1 sec and then again every sec+nanosec
+		timer.it_value.tv_sec = 1;
+		timer.it_value.tv_nsec = 0;
 		timer.it_interval.tv_sec = getSeconds();
 		timer.it_interval.tv_nsec = getNanoseconds();
 	}
@@ -184,14 +230,3 @@
 	{
 		detached = detachedState;
 	}
-
-	//-----------------------------------------------------------------------------------------
-	// Converts specified time interval into seconds and nanoseconds
-	//-----------------------------------------------------------------------------------------
-	void PulseTimer::setInterval(double interval)
-	{
-		seconds = interval - floor(interval);
-		nanoseconds = (interval - seconds)*pow(10,9);
-	}
-
-

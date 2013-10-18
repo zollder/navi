@@ -36,7 +36,7 @@ class PulseTimer
 		int stop();
 
 		// (re)initializes the guts of the timer structure
-		int reset();
+		void reset();
 
 		// detaches timer from the channel.
 		int detach();
@@ -80,6 +80,15 @@ class PulseTimer
 	//-----------------------------------------------------------------------------------------
 	protected:
 
+		// attaches connection
+		void connectionAttach(int);
+
+		// sets seconds portion of the time interval
+		void setInterval(double interval);
+
+		// creates timer
+		void createTimer();
+
 		// sets connection id
 		void setConnectionId(int id);
 
@@ -88,9 +97,6 @@ class PulseTimer
 
 		// sets timer's detached flag (1=true, 0=false)
 		void setDetached(bool);
-
-		// sets seconds portion of the time interval
-		void setInterval(double interval);
 };
 
 #endif

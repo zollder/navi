@@ -31,11 +31,23 @@
 	//-----------------------------------------------------------------------------------------
 	void* DisplayThread::run()
 	{
+		// dummy buffer
+		string buffer[8];
+
 		mutex.lock();
-		for (int i = 0; i < 10; i++)
+
+		int n = 10;
+		while(n != 0)
 		{
-			printf("DisplayThread %lu running - %d\n",  (long unsigned int)getThreadId(), i+1);
-			sleep(1);
+			printf("In the display while loop ...\n");
+			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
+			if (receivedPulse != 0)
+				printf("Error receiving display pulse\n");
+			else
+			{
+				printf("Display pulse %d received\n",  n);
+				n--;
+			}
 		}
 
 		printf("DisplayThread done %lu\n", (long unsigned int)getThreadId());
