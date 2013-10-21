@@ -92,7 +92,10 @@
 	{
 		std::list<Accelerator*>::iterator position = acceleratorData->begin();
 		while (position != acceleratorData->end())
+		{
 			delete *position;
+			position++;
+		}
 
 		acceleratorData->clear();
 	}
