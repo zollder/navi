@@ -10,7 +10,7 @@
 	//-----------------------------------------------------------------------------------------
 	PulseTimer::PulseTimer(double interval, int channelId)
 	{
-		cout << "Creating and initializing PulseTimer ..." << endl;
+		printf("Creating and initializing PulseTimer ...\n");
 
 		// connect client to the channel
 		connectionAttach(channelId);
@@ -32,7 +32,7 @@
 	//-----------------------------------------------------------------------------------------
 	PulseTimer::~PulseTimer()
 	{
-		cout << "Destroying PulseTimer ..." << endl;
+		printf("Destroying PulseTimer ...\n");
 
 		// detaches the connection
 		if (ConnectDetach(getConnectionId()) < 0)
@@ -101,13 +101,16 @@
 
 		// start the timer and running status accordingly
 		int result = timer_settime(timerId, 0, &timer, NULL);
-		if (result == 0)
+		if (result != 0)
+		{
+			printf("Error creating timer \n");
+			exit(EXIT_FAILURE);
+		}
+		else
 		{
 			this->setRunning(true);
 			printf("Timer started \n");
 		}
-		else
-			printf("Error creating timer \n");
 
 		return result;
 	}

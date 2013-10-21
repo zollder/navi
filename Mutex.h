@@ -18,7 +18,7 @@ class Mutex
 		//-----------------------------------------------------------------------------------------
 		Mutex()
 		{
-			cout << "Initializing mutex ..." << endl;
+			printf("Initializing mutex ...\n");
 			pthread_mutex_init(&mutex, NULL);
 		}
 
@@ -27,7 +27,7 @@ class Mutex
 		//-----------------------------------------------------------------------------------------
 		virtual ~Mutex()
 		{
-			cout << "Destroying mutex ..." << endl;
+			printf("Destroying mutex ...\n");
 			pthread_mutex_destroy(&mutex);
 		}
 
