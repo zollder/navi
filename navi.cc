@@ -6,15 +6,19 @@
 #include "DisplayThread.h"
 #include "AcceleratorThread.h"
 #include "PulseTimer.h"
+#include "NaviData.h"
 
 int main(void)
 {
-	cout << "Main thread started!" << endl;
+	printf("Main thread started!");
 
+	NaviData* naviData = new NaviData(30);
+	cout << naviData->getVelocityData()->Vx << endl;
+	cout << naviData->getDistanceData()->x << endl;
 	Mutex mutex;
 
-	DisplayThread* displayThread = new DisplayThread(mutex);
-	AcceleratorThread* acceleratorThread = new AcceleratorThread(mutex);
+	DisplayThread* displayThread = new DisplayThread(mutex, naviData);
+	AcceleratorThread* acceleratorThread = new AcceleratorThread(mutex, naviData);
 
 	PulseTimer* displayTimer = new PulseTimer(1.2, displayThread->getChannelId());
 	PulseTimer* acceleratorTimer = new PulseTimer(1.5, acceleratorThread->getChannelId());
@@ -33,6 +37,8 @@ int main(void)
 	delete displayThread;
 	delete acceleratorThread;
 
-	cout << "Main thread done!" << endl;
+	delete naviData;
+
+	printf("Main thread done!\n");
 	return EXIT_SUCCESS;
 }
