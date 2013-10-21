@@ -13,9 +13,9 @@
 	//-----------------------------------------------------------------------------------------
 	// Constructor
 	//-----------------------------------------------------------------------------------------
-	DisplayThread::DisplayThread(Mutex& mutexRef) : mutex(mutexRef)
+	DisplayThread::DisplayThread(Mutex& mutex_r, NaviData* naviData_p) : BaseThread(mutex_r, naviData_p)
 	{
-		cout << "Constructing DisplayThread ..." << endl;
+		printf("Constructing DisplayThread ...\n");
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@
 	//-----------------------------------------------------------------------------------------
 	DisplayThread::~DisplayThread()
 	{
-		cout << "Destroying DisplayThread ..." << endl;
+		printf("Destroying DisplayThread ...\n");
 	}
 
 	//-----------------------------------------------------------------------------------------

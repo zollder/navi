@@ -8,13 +8,16 @@
 	//-----------------------------------------------------------------------------------------
 	// Constructor
 	//-----------------------------------------------------------------------------------------
-	BaseThread::BaseThread()
+	BaseThread::BaseThread(Mutex& mutex_r, NaviData* naviData_p) : mutex(mutex_r)
 	{
-		cout << "Constructing BaseThread ..." << endl;
+		printf("Constructing BaseThread ...\n");
+
 		setThreadId(1);
 		setRunning(false);
 		setDetached(false);
 		setChannelId(createChannel());
+		mutex = mutex_r;
+		naviData = naviData_p;
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -25,7 +28,7 @@
 	//-----------------------------------------------------------------------------------------
 	BaseThread::~BaseThread()
 	{
-		cout << "Destroying BaseThread ..." << endl;
+		printf("Destroying BaseThread ...\n");
 
 		if (isRunning() && !isDetached())
 			pthread_detach(threadId);

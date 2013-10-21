@@ -13,9 +13,9 @@
 	//-----------------------------------------------------------------------------------------
 	// Constructor
 	//-----------------------------------------------------------------------------------------
-	AcceleratorThread::AcceleratorThread(Mutex& mutexRef) : mutex(mutexRef)
+	AcceleratorThread::AcceleratorThread(Mutex& mutex_r, NaviData* naviData_p) : BaseThread(mutex_r, naviData_p)
 	{
-		cout << "Constructing AcceleratorThread ..." << endl;
+		printf("Constructing AcceleratorThread ...\n");
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@
 	//-----------------------------------------------------------------------------------------
 	AcceleratorThread::~AcceleratorThread()
 	{
-		cout << "Destroying AcceleratorThread ..." << endl;
+		printf("Destroying AcceleratorThread ...\n");
 	}
 
 	//-----------------------------------------------------------------------------------------

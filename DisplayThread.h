@@ -3,7 +3,6 @@
 #include <pthread.h>
 
 #include "BaseThread.h"
-#include "Mutex.h"
 
 #ifndef displaythread_h
 #define displaythread_h
@@ -13,15 +12,13 @@
 //-----------------------------------------------------------------------------------------
 class DisplayThread : public BaseThread
 {
-		Mutex& mutex;
-
 	//-----------------------------------------------------------------------------------------
 	// Public members
 	//-----------------------------------------------------------------------------------------
 	public:
 
 		// constructor
-		DisplayThread(Mutex& mutexRef);
+		DisplayThread(Mutex&, NaviData*);
 
 		// destructor
 		~DisplayThread();

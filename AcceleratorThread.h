@@ -3,7 +3,6 @@
 #include <pthread.h>
 
 #include "BaseThread.h"
-#include "Mutex.h"
 
 #ifndef acceleratorthread_h
 #define acceleratorthread_h
@@ -13,15 +12,13 @@
 //-----------------------------------------------------------------------------------------
 class AcceleratorThread : public BaseThread
 {
-		Mutex& mutex;
-
 	//-----------------------------------------------------------------------------------------
 	// Public members
 	//-----------------------------------------------------------------------------------------
 	public:
 
 		// constructor
-		AcceleratorThread(Mutex& mutexRef);
+		AcceleratorThread(Mutex&, NaviData*);
 
 		// destructor
 		~AcceleratorThread();

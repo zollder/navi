@@ -3,6 +3,9 @@
 #include <pthread.h>
 #include <sys/neutrino.h>
 
+#include "Mutex.h"
+#include "NaviData.h"
+
 #ifndef basethread_h
 #define basethread_h
 
@@ -17,7 +20,7 @@ class BaseThread
 	public:
 
 		// constructor
-		BaseThread();
+		BaseThread(Mutex&, NaviData*);
 
 		// virtual destructor
 		// forces subclass destructor call upon object deletion through a base class pointer
@@ -60,6 +63,10 @@ class BaseThread
 	// Protected members
 	//-----------------------------------------------------------------------------------------
 	protected:
+
+		Mutex& mutex;
+		NaviData* naviData;
+
 		// sets thread id
 		void setThreadId(int id);
 
