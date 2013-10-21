@@ -2,6 +2,7 @@
 #include <iostream.h>
 #include <pthread.h>
 #include <sys/neutrino.h>
+#include <sstream>
 
 #include "Mutex.h"
 #include "NaviData.h"
@@ -66,6 +67,7 @@ class BaseThread
 
 		Mutex& mutex;
 		NaviData* naviData;
+		std::stringstream outputStream;
 
 		// sets thread id
 		void setThreadId(int id);

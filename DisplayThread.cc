@@ -34,23 +34,35 @@
 		// dummy buffer
 		string buffer[8];
 
-		mutex.lock();
-
 		int n = 10;
 		while(n != 0)
 		{
 			printf("In the display while loop ...\n");
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 			if (receivedPulse != 0)
+			{
 				printf("Error receiving display pulse\n");
+			}
 			else
 			{
 				printf("Display pulse %d received\n",  n);
+				mutex.lock();
+				outputStream <<
+						" x:" << naviData->getDistanceData()->x <<
+						" y:" << naviData->getDistanceData()->y <<
+						" z:" << naviData->getDistanceData()->z << endl;
+
+				outputStream <<
+						" vx:" << naviData->getVelocityData()->Vx <<
+						" vy:" << naviData->getVelocityData()->Vy <<
+						" vz:" << naviData->getVelocityData()->Vz << endl;
+				mutex.unlock();
+
+				std::cout << outputStream.str();
 				n--;
 			}
 		}
 
 		printf("DisplayThread done %lu\n", (long unsigned int)getThreadId());
-		mutex.unlock();
 		return NULL;
 	}
