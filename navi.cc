@@ -12,16 +12,15 @@ int main(void)
 {
 	printf("Main thread started!");
 
-	NaviData* naviData = new NaviData(30);
-	cout << naviData->getVelocityData()->Vx << endl;
-	cout << naviData->getDistanceData()->x << endl;
+
 	Mutex mutex;
+	NaviData* naviData = new NaviData();
 
 	DisplayThread* displayThread = new DisplayThread(mutex, naviData);
 	AcceleratorThread* acceleratorThread = new AcceleratorThread(mutex, naviData);
 
-	PulseTimer* displayTimer = new PulseTimer(1.2, displayThread->getChannelId());
-	PulseTimer* acceleratorTimer = new PulseTimer(1.5, acceleratorThread->getChannelId());
+	PulseTimer* displayTimer = new PulseTimer(6, displayThread->getChannelId());
+	PulseTimer* acceleratorTimer = new PulseTimer(2, acceleratorThread->getChannelId());
 
 	displayThread->start();
 	displayTimer->start();

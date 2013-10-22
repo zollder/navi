@@ -17,6 +17,9 @@ class AcceleratorThread : public BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
+		double* acceleratorData;
+		//vector<float> acceleratorData;
+
 		// constructor
 		AcceleratorThread(Mutex&, NaviData*);
 

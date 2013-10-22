@@ -29,34 +29,22 @@ class NaviData
 		double z;
 	};
 
-	struct Accelerator
-	{
-		double Ax;
-		double Ay;
-		double Az;
-	};
-
 	//-----------------------------------------------------------------------------------------
 	// Public members
 	//-----------------------------------------------------------------------------------------
 	public:
 
 		// constructor
-		NaviData(double);
+		NaviData();
 
 		// destructor
 		~NaviData();
-
-		static const float gravity = 9.8;
 
 		// returns a pointer to a velocity structure that holds calculated velocity values
 		Velocity* getVelocityData();
 
 		// returns a pointer to a distance structure that holds calculated distance values
 		Distance* getDistanceData();
-
-		// returns a list of objects of predefined 3D acceleration values
-		std::list<Accelerator*>* getAcceleratorData();
 
 
 	//-----------------------------------------------------------------------------------------
@@ -65,13 +53,6 @@ class NaviData
 	private:
 		Velocity* velocityData;
 		Distance* distanceData;
-		list<Accelerator*>* acceleratorData;
-
-		// initializes accelerator data list
-		list<Accelerator*>* initAcceleratorData(double);
-
-		// deletes accelerator data list members
-		void deleteAcceleratorData();
 };
 
 #endif

@@ -37,7 +37,6 @@
 		int n = 10;
 		while(n != 0)
 		{
-			printf("In the display while loop ...\n");
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 			if (receivedPulse != 0)
 			{
@@ -46,19 +45,18 @@
 			else
 			{
 				printf("Display pulse %d received\n",  n);
-				mutex.lock();
-				outputStream <<
-						" x:" << naviData->getDistanceData()->x <<
-						" y:" << naviData->getDistanceData()->y <<
-						" z:" << naviData->getDistanceData()->z << endl;
 
-				outputStream <<
-						" vx:" << naviData->getVelocityData()->Vx <<
-						" vy:" << naviData->getVelocityData()->Vy <<
-						" vz:" << naviData->getVelocityData()->Vz << endl;
+				mutex.lock();
+				printf("Distance: x: %f, y: %f, z: %f \n",
+						naviData->getDistanceData()->x,
+						naviData->getDistanceData()->y,
+						naviData->getDistanceData()->z);
+				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",
+						naviData->getVelocityData()->Vx,
+						naviData->getVelocityData()->Vy,
+						naviData->getVelocityData()->Vz);
 				mutex.unlock();
 
-				std::cout << outputStream.str();
 				n--;
 			}
 		}
