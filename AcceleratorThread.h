@@ -17,9 +17,6 @@ class AcceleratorThread : public BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
-		double* acceleratorData;
-		//vector<float> acceleratorData;
-
 		// constructor
 		AcceleratorThread(Mutex&, NaviData*);
 
@@ -28,6 +25,14 @@ class AcceleratorThread : public BaseThread
 
 		// overrides BaseThread's run() method
 		void* run();
+
+	private:
+		double* acceleratorDataX;
+		double* acceleratorDataY;
+		double* acceleratorDataZ;
+
+		double x, y, z;
+		double Vx, Vy, Vz;
 };
 
 #endif
