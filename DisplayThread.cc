@@ -34,8 +34,8 @@
 		// dummy buffer
 		string buffer[8];
 
-		int n = 10;
-		while(n != 0)
+		int counter = 0;
+		while( ++counter <= duration)
 		{
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 			if (receivedPulse != 0)
@@ -44,7 +44,7 @@
 			}
 			else
 			{
-				printf("Display pulse %d received\n",  n);
+				printf("Display pulse %d received\n",  counter);
 
 				mutex.lock();
 				printf("Distance: x: %f, y: %f, z: %f \n",
@@ -56,8 +56,6 @@
 						naviData->getVelocityData()->Vy,
 						naviData->getVelocityData()->Vz);
 				mutex.unlock();
-
-				n--;
 			}
 		}
 

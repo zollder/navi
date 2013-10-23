@@ -78,19 +78,22 @@ Submit the following on the day of project demonstration:
 Grading
 -------
 	The program works and is well designed [8 pts]
-		-Threads for DAP and DD have been created
-		-Velocity and position variable access has been protected
-		-Timer classes created and objects instantiated, connected to DAP and DD
+		-Threads for DAP and DD have been created									(done)
+		-Velocity and position variable access has been protected					(done)
+		-Timer classes created and objects instantiated, connected to DAP and DD	(done)
 		-Must run for 30 seconds
-			*Display all timer pulses and their time annotation
-		-Minimum needed to pass the course
+			*Display all timer pulses and their time annotation	(to do)
+	
 	Timing measurement [4 pts]
-		-Proper calculation of DAP and DD execution time
+		-Proper calculation of DAP and DD execution time							(done)
 		-Individual iterations only
-		-Calculate best/worst/average over 30 seconds of execution
+		-Calculate best/worst/average over 30 seconds of execution  (clock difference for DAP and DD) todo
 	Understanding of the design [4 pts]
 		-Based on Q&A at the time of demonstration
 		-Grades may be different for students in the same group
+		
+		remove mutex lock during cout dd
+		remove negative results produced in dap
 		
 References
 ----------
