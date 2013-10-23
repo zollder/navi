@@ -16,6 +16,9 @@
 	DisplayThread::DisplayThread(Mutex& mutex_r, NaviData* naviData_p) : BaseThread(mutex_r, naviData_p)
 	{
 		printf("Constructing DisplayThread ...\n");
+		//initialization of local temporary variables
+		x=0, y=0, z=0;
+		vx=0, vy=0, vz=0;
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -34,6 +37,7 @@
 		// dummy buffer
 		string buffer[8];
 
+
 		int counter = 0;
 		while( ++counter <= duration)
 		{
@@ -44,18 +48,22 @@
 			}
 			else
 			{
-				printf("Display pulse %d received\n",  counter);
+				printf("Display pulse %d received\n",  counter );
 
+				//retrieve the coordinates from the shared storage
 				mutex.lock();
-				printf("Distance: x: %f, y: %f, z: %f \n",
-						naviData->getDistanceData()->x,
-						naviData->getDistanceData()->y,
-						naviData->getDistanceData()->z);
-				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",
-						naviData->getVelocityData()->Vx,
-						naviData->getVelocityData()->Vy,
-						naviData->getVelocityData()->Vz);
+				x = naviData->getDistanceData()->x;
+				y = naviData->getDistanceData()->y;
+				z = naviData->getDistanceData()->z;
+
+				vx = naviData->getVelocityData()->Vx;
+				vy = naviData->getVelocityData()->Vy;
+				vz = naviData->getVelocityData()->Vz;
 				mutex.unlock();
+
+				//display the ready up to date distance and velocity
+				printf("Distance: x: %f, y: %f, z: %f \n",x,y,z);
+				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",vx,vy,vz);
 			}
 		}
 

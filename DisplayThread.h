@@ -25,6 +25,10 @@ class DisplayThread : public BaseThread
 
 		// overrides BaseThread's run() method
 		void* run();
+	private:
+		//temporary storage values used for display function
+		double x,y,z;
+		double vx,vy,vz;
 };
 
 #endif

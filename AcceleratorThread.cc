@@ -43,7 +43,7 @@
 		string buffer[8];
 
 		int counter = 0;
-		while(counter != duration)
+		while(++ counter <= duration)
 		{
 			printf("In the accelerator while loop ...\n");
 
@@ -87,7 +87,6 @@
 
 				mutex.unlock();
 
-				++counter;
 			}
 		}
 
