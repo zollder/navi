@@ -20,7 +20,7 @@ class BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
-		static const int duration = 10;
+		static const int duration = 30;
 		static const float gravity = 9.8;
 		static const double calculation_period = 2;
 

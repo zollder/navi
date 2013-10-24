@@ -31,7 +31,7 @@
 		{
 			acceleratorDataX[i] = 20 + log(i+1);
 			acceleratorDataY[i] = 20 + log(i+2);
-			acceleratorDataZ[i] = 9 +log(i+1);
+			acceleratorDataZ[i] = 9 + 2*log(i+1);
 			printf("Ax: %f, Ay: %f, Az %f \n", acceleratorDataX[i], acceleratorDataY[i], acceleratorDataZ[i]);
 		}
 	}
@@ -42,6 +42,9 @@
 	AcceleratorThread::~AcceleratorThread()
 	{
 		printf("Destroying AcceleratorThread ...\n");
+		delete acceleratorDataX;
+		delete acceleratorDataY;
+		delete acceleratorDataZ;
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -53,7 +56,7 @@
 		string buffer[8];
 
 		int counter = 0;
-		while(counter != duration)
+		while(counter <= duration)
 		{
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 

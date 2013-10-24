@@ -24,7 +24,6 @@ int main(void)
 
 	displayThread->start();
 	displayTimer->start();
-	delay(1);
 	acceleratorThread->start();
 	acceleratorTimer->start();
 
