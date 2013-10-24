@@ -18,6 +18,7 @@
 		setChannelId(createChannel());
 		mutex = mutex_r;
 		naviData = naviData_p;
+		last_cycles=-1;
 	}
 
 	//-----------------------------------------------------------------------------------------

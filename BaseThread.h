@@ -2,7 +2,7 @@
 #include <iostream.h>
 #include <pthread.h>
 #include <sys/neutrino.h>
-#include <sstream>
+
 
 #include "Mutex.h"
 #include "NaviData.h"
@@ -20,6 +20,7 @@ class BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
+		//Run-Time variables for setup of simulation
 		static const int duration = 10;
 		static const float gravity = 9.8;
 		static const double calculation_period = 2;
@@ -71,7 +72,13 @@ class BaseThread
 
 		Mutex& mutex;
 		NaviData* naviData;
-		stringstream outputStream;
+
+		//timing variables
+		_uint64 last_cycles;
+		_uint64 current_cycles;
+		float cpu_freq;
+		time_t startTime;
+
 
 		// sets thread id
 		void setThreadId(int id);

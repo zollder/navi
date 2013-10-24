@@ -27,10 +27,12 @@ class AcceleratorThread : public BaseThread
 		void* run();
 
 	private:
+		//acceleration simulated variables
 		double* acceleratorDataX;
 		double* acceleratorDataY;
 		double* acceleratorDataZ;
 
+		//local storage temporary variables
 		double x, y, z;
 		double Vx, Vy, Vz;
 };
