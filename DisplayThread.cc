@@ -55,7 +55,7 @@
 			}
 			else
 			{
-//				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
+				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
 
 				// fetch navi data from shared object
 //				mutex.lock();
@@ -93,7 +93,7 @@
 			}
 		}
 
-		printf("\nDisplayThread done %lu\n", (long unsigned int)getThreadId());
+		printf("\nDisplayThread done %lu, completed in %d seconds\n", (long unsigned int)getThreadId(), time(NULL)-startTime);
 
 		// show time measurements
 		printf("\nWorst-case execution time: %f", wcet);
