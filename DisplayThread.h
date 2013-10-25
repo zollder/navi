@@ -25,6 +25,14 @@ class DisplayThread : public BaseThread
 
 		// overrides BaseThread's run() method
 		void* run();
+
+	//-----------------------------------------------------------------------------------------
+	// Private members
+	//-----------------------------------------------------------------------------------------
+    private:
+		// local data holders (distance and velocity)
+		double x,y,z;
+		double Vx,Vy,Vz;
 };
 
 #endif

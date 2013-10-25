@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <iostream.h>
-#include <unistd.h>
 #include <pthread.h>
 
 #include "DisplayThread.h"
@@ -34,33 +33,49 @@
 		// dummy buffer
 		string buffer[8];
 
-		int n = 10;
-		while(n != 0)
+		int counter = 0;
+		while(counter < (duration))
 		{
+			// wait for the pulse to fire
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
+
+			// clock stamp execution start
+			current_cycles = ClockCycles();
+
 			if (receivedPulse != 0)
 			{
 				printf("Error receiving display pulse\n");
 			}
 			else
 			{
-				printf("Display pulse %d received\n",  n);
+				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
 
+				// fetch navi data from shared object
 				mutex.lock();
-				printf("Distance: x: %f, y: %f, z: %f \n",
-						naviData->getDistanceData()->x,
-						naviData->getDistanceData()->y,
-						naviData->getDistanceData()->z);
-				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",
-						naviData->getVelocityData()->Vx,
-						naviData->getVelocityData()->Vy,
-						naviData->getVelocityData()->Vz);
+				x = naviData->getDistanceData()->x;
+				y = naviData->getDistanceData()->y;
+				z = naviData->getDistanceData()->z;
+
+				Vx = naviData->getVelocityData()->Vx;
+				Vy = naviData->getVelocityData()->Vy;
+				Vz = naviData->getVelocityData()->Vz;
 				mutex.unlock();
 
-				n--;
+				// Display distance and velocity (shared data object)
+				printf("Distance: x: %f, y: %f, z: %f \n",x,y,z);
+				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n", Vx, Vy, Vz);
+
+				//Clock stamp execution stop
+				last_cycles = ClockCycles();
+
+			    //Calculate execution time
+			    float elapse = ( last_cycles - current_cycles) / cpu_freq;
+		    	printf("Display Execution time %f seconds\n", elapse );
+
+		    	counter++;
 			}
 		}
 
-		printf("DisplayThread done %lu\n", (long unsigned int)getThreadId());
+		printf("\nDisplayThread done %lu\n", (long unsigned int)getThreadId());
 		return NULL;
 	}

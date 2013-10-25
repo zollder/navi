@@ -3,6 +3,9 @@
 #include <pthread.h>
 #include <sys/neutrino.h>
 #include <sstream>
+#include <time.h>
+#include <sys/netmgr.h>
+#include <sys/syspage.h>
 
 #include "Mutex.h"
 #include "NaviData.h"
@@ -20,9 +23,9 @@ class BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
-		static const int duration = 10;
+		static const int duration = 3;
 		static const float gravity = 9.8;
-		static const double calculation_period = 2;
+		static const double interval = 2;
 
 		// constructor
 		BaseThread(Mutex&, NaviData*);
@@ -72,6 +75,16 @@ class BaseThread
 		Mutex& mutex;
 		NaviData* naviData;
 		stringstream outputStream;
+
+		//timing variables
+		_uint64 last_cycles;
+		_uint64 current_cycles;
+		float cpu_freq;
+		time_t startTime;
+
+		// local data holders
+		double x, y, z;
+		double Vx, Vy, Vz;
 
 		// sets thread id
 		void setThreadId(int id);

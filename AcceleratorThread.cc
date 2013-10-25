@@ -18,10 +18,7 @@
 	{
 		printf("Constructing AcceleratorThread ...\n");
 
-		x = 0; y = 0; z = 0;
-		Vx = 0; Vy = 0; Vz = 0;
-
-		// initialize accelerator data arrays
+		// initialize accelerator data holders
 		acceleratorDataX = new double[duration];
 		acceleratorDataY = new double[duration];
 		acceleratorDataZ = new double[duration];
@@ -31,7 +28,7 @@
 		{
 			acceleratorDataX[i] = 20 + log(i+1);
 			acceleratorDataY[i] = 20 + log(i+2);
-			acceleratorDataZ[i] = 9 +log(i+1);
+			acceleratorDataZ[i] = 9 + 3*log(i+1);
 			printf("Ax: %f, Ay: %f, Az %f \n", acceleratorDataX[i], acceleratorDataY[i], acceleratorDataZ[i]);
 		}
 	}
@@ -53,8 +50,9 @@
 		string buffer[8];
 
 		int counter = 0;
-		while(counter != duration)
+		while(counter != 3*duration)
 		{
+			// wait for the pulse to fire
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 
 			if (receivedPulse != 0)
@@ -64,20 +62,23 @@
 			}
 			else
 			{
-				printf("Accelerator pulse %d received\n", counter);
+				printf("\nAccelerator pulse %d received at time %d seconds\n", counter+1 , time(NULL)-startTime );
+
+				// (measurements) clock stamp start
+				current_cycles = ClockCycles();
 
 				mutex.lock();
 
 				// calculate
-				Vx = naviData->getVelocityData()->Vx + acceleratorDataX[counter] * calculation_period;
-				Vy = naviData->getVelocityData()->Vy + acceleratorDataY[counter] * calculation_period;
-				Vz = naviData->getVelocityData()->Vz + (acceleratorDataZ[counter] - gravity) * calculation_period;
+				Vx = naviData->getVelocityData()->Vx + acceleratorDataX[counter] * interval;
+				Vy = naviData->getVelocityData()->Vy + acceleratorDataY[counter] * interval;
+				Vz = naviData->getVelocityData()->Vz + (acceleratorDataZ[counter] - gravity) * interval;
 
-				double x = naviData->getDistanceData()->x + Vx * calculation_period;
-				double y = naviData->getDistanceData()->y + Vy * calculation_period;
-				double z = naviData->getDistanceData()->z + Vz * calculation_period;
+				x = naviData->getDistanceData()->x + Vx * interval;
+				y = naviData->getDistanceData()->y + Vy * interval;
+				z = naviData->getDistanceData()->z + Vz * interval;
 
-				// save calculated values
+				// persist
 				naviData->getVelocityData()->Vx = Vx;
 				naviData->getVelocityData()->Vy = Vy;
 				naviData->getVelocityData()->Vz = Vz;
@@ -86,7 +87,7 @@
 				naviData->getDistanceData()->y = y;
 				naviData->getDistanceData()->z = z;
 
-				// simulate extra time
+				// simulate target system execution time
 				for (int i = 0; i < 100000; i++)
 				{
 					i = i + 1;
@@ -95,21 +96,18 @@
 
 				mutex.unlock();
 
-				// print results, for logging purposes
-				printf("Distance: x: %f, y: %f, z: %f \n",
-						naviData->getDistanceData()->x,
-						naviData->getDistanceData()->y,
-						naviData->getDistanceData()->z);
-				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",
-						naviData->getVelocityData()->Vx,
-						naviData->getVelocityData()->Vy,
-						naviData->getVelocityData()->Vz);
+				// (measurements) clock stamp end
+				last_cycles = ClockCycles();
 
-				++counter;
+			    // calculate and log execution time
+			    float elapse = ( last_cycles - current_cycles) / cpu_freq;
+		    	printf("Accelerator Execution time %f seconds\n", elapse );
+
+		    	counter++;
 			}
 		}
 
-		printf("AcceleratorThread done %lu\n", (long unsigned int)getThreadId());
+		printf("\nAcceleratorThread %lu done at %d seconds\n", (long unsigned int)getThreadId() , time(NULL)-startTime );
 
 		return NULL;
 	}
