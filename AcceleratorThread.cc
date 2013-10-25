@@ -46,6 +46,12 @@
 	//-----------------------------------------------------------------------------------------
 	void* AcceleratorThread::run()
 	{
+		// initialize time tracking variables
+		float elapse = 0;
+		float bcet = 1;
+		float wcet = 0;
+		float accumulator = 0;
+
 		// dummy buffer
 		string buffer[8];
 
@@ -103,11 +109,25 @@
 			    float elapse = ( last_cycles - current_cycles) / cpu_freq;
 		    	printf("Accelerator Execution time %f seconds\n", elapse );
 
+		    	// worst execution time tracker
+		    	if (wcet < elapse)
+		    		wcet = elapse;
+		    	// best execution time tracker
+		    	if (bcet > elapse)
+		    		bcet = elapse;
+		    	// exec time accumulator
+		    	accumulator = accumulator + elapse;
+
 		    	counter++;
 			}
 		}
 
 		printf("\nAcceleratorThread %lu done at %d seconds\n", (long unsigned int)getThreadId() , time(NULL)-startTime );
+
+		// show time measurements
+		printf("\nWorst-case execution time: %f", wcet);
+		printf("\nBest-case execution time: %f", bcet);
+		printf("\nAverage execution time: %f\n", accumulator/(duration*3));
 
 		return NULL;
 	}
