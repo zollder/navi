@@ -1,7 +1,7 @@
 navi
 ====
 
-Source code for a QNX navi project
+Project requirements for the QNX navy sonar display.
 
 Initial value of position (3D co-ordinates)
 X= 0.0, Y = 0.0, Z = 0.0
@@ -82,18 +82,15 @@ Grading
 		-Velocity and position variable access has been protected					(done)
 		-Timer classes created and objects instantiated, connected to DAP and DD	(done)
 		-Must run for 30 seconds
-			*Display all timer pulses and their time annotation	(to do)
+			*Display all timer pulses and their time annotation						(done)
 	
 	Timing measurement [4 pts]
 		-Proper calculation of DAP and DD execution time							(done)
-		-Individual iterations only
-		-Calculate best/worst/average over 30 seconds of execution  (clock difference for DAP and DD) todo
+		-Individual iterations only													(done)
+		-Calculate best/worst/average over 30 seconds of execution 					(done)
 	Understanding of the design [4 pts]
-		-Based on Q&A at the time of demonstration
+		-Based on Q&A at the time of demonstration									
 		-Grades may be different for students in the same group
-		
-		remove mutex lock during cout dd
-		remove negative results produced in dap
 		
 References
 ----------
