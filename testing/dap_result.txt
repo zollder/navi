@@ -1,0 +1,148 @@
+Main thread started!
+Initializing mutex ...
+Initializing NaviData ... 
+Constructing BaseThread ...
+Channel successfully created 
+Constructing AcceleratorThread ...
+Ax: 20.000000, Ay: 20.693147, Az 9.000000 
+Ax: 20.693147, Ay: 21.098612, Az 11.079442 
+Ax: 21.098612, Ay: 21.386294, Az 12.295837 
+Ax: 21.386294, Ay: 21.609438, Az 13.158883 
+Ax: 21.609438, Ay: 21.791759, Az 13.828314 
+Ax: 21.791759, Ay: 21.945910, Az 14.375278 
+Ax: 21.945910, Ay: 22.079442, Az 14.837730 
+Ax: 22.079442, Ay: 22.197225, Az 15.238325 
+Ax: 22.197225, Ay: 22.302585, Az 15.591674 
+Ax: 22.302585, Ay: 22.397895, Az 15.907755 
+Ax: 22.397895, Ay: 22.484907, Az 16.193686 
+Ax: 22.484907, Ay: 22.564949, Az 16.454720 
+Ax: 22.564949, Ay: 22.639057, Az 16.694848 
+Ax: 22.639057, Ay: 22.708050, Az 16.917172 
+Ax: 22.708050, Ay: 22.772589, Az 17.124151 
+Ax: 22.772589, Ay: 22.833213, Az 17.317766 
+Ax: 22.833213, Ay: 22.890372, Az 17.499640 
+Ax: 22.890372, Ay: 22.944439, Az 17.671115 
+Ax: 22.944439, Ay: 22.995732, Az 17.833317 
+Ax: 22.995732, Ay: 23.044522, Az 17.987197 
+Ax: 23.044522, Ay: 23.091042, Az 18.133567 
+Ax: 23.091042, Ay: 23.135494, Az 18.273127 
+Ax: 23.135494, Ay: 23.178054, Az 18.406483 
+Ax: 23.178054, Ay: 23.218876, Az 18.534161 
+Ax: 23.218876, Ay: 23.258097, Az 18.656627 
+Ax: 23.258097, Ay: 23.295837, Az 18.774290 
+Ax: 23.295837, Ay: 23.332205, Az 18.887511 
+Ax: 23.332205, Ay: 23.367296, Az 18.996614 
+Ax: 23.367296, Ay: 23.401197, Az 19.101887 
+Ax: 23.401197, Ay: 23.433987, Az 19.203592 
+Ax: 23.433987, Ay: 23.465736, Az 19.301962 
+Creating and initializing PulseTimer ...
+Connection attached successfully 
+Timer created successfully 
+
+
+	-------------Begin---------------
+
+Timer started 
+
+Accelerator pulse 1 received at time 1 seconds
+Accelerator Execution time 0.000842 seconds
+
+Accelerator pulse 2 received at time 3 seconds
+Accelerator Execution time 0.000925 seconds
+
+Accelerator pulse 3 received at time 5 seconds
+Accelerator Execution time 0.000844 seconds
+
+Accelerator pulse 4 received at time 7 seconds
+Accelerator Execution time 0.000811 seconds
+
+Accelerator pulse 5 received at time 9 seconds
+Accelerator Execution time 0.000888 seconds
+
+Accelerator pulse 6 received at time 11 seconds
+Accelerator Execution time 0.000799 seconds
+
+Accelerator pulse 7 received at time 13 seconds
+Accelerator Execution time 0.000790 seconds
+
+Accelerator pulse 8 received at time 15 seconds
+Accelerator Execution time 0.000851 seconds
+
+Accelerator pulse 9 received at time 17 seconds
+Accelerator Execution time 0.000846 seconds
+
+Accelerator pulse 10 received at time 19 seconds
+Accelerator Execution time 0.000811 seconds
+
+Accelerator pulse 11 received at time 21 seconds
+Accelerator Execution time 0.000835 seconds
+
+Accelerator pulse 12 received at time 23 seconds
+Accelerator Execution time 0.000798 seconds
+
+Accelerator pulse 13 received at time 25 seconds
+Accelerator Execution time 0.000790 seconds
+
+Accelerator pulse 14 received at time 27 seconds
+Accelerator Execution time 0.000789 seconds
+
+Accelerator pulse 15 received at time 29 seconds
+Accelerator Execution time 0.000731 seconds
+
+Accelerator pulse 16 received at time 31 seconds
+Accelerator Execution time 0.000851 seconds
+
+Accelerator pulse 17 received at time 33 seconds
+Accelerator Execution time 0.000784 seconds
+
+Accelerator pulse 18 received at time 35 seconds
+Accelerator Execution time 0.000842 seconds
+
+Accelerator pulse 19 received at time 37 seconds
+Accelerator Execution time 0.000613 seconds
+
+Accelerator pulse 20 received at time 39 seconds
+Accelerator Execution time 0.000806 seconds
+
+Accelerator pulse 21 received at time 41 seconds
+Accelerator Execution time 0.000788 seconds
+
+Accelerator pulse 22 received at time 43 seconds
+Accelerator Execution time 0.000850 seconds
+
+Accelerator pulse 23 received at time 45 seconds
+Accelerator Execution time 0.000885 seconds
+
+Accelerator pulse 24 received at time 47 seconds
+Accelerator Execution time 0.000866 seconds
+
+Accelerator pulse 25 received at time 49 seconds
+Accelerator Execution time 0.000877 seconds
+
+Accelerator pulse 26 received at time 51 seconds
+Accelerator Execution time 0.000793 seconds
+
+Accelerator pulse 27 received at time 53 seconds
+Accelerator Execution time 0.000793 seconds
+
+Accelerator pulse 28 received at time 55 seconds
+Accelerator Execution time 0.000533 seconds
+
+Accelerator pulse 29 received at time 57 seconds
+Accelerator Execution time 0.000890 seconds
+
+Accelerator pulse 30 received at time 59 seconds
+Accelerator Execution time 0.000748 seconds
+
+AcceleratorThread 2 done at 59 seconds
+
+Worst-case execution time: 0.000925
+Best-case execution time: 0.000533
+Average execution time: 0.000809
+
+
+	-------------END-----------------
+
+Destroying PulseTimer ...
+Destroying AcceleratorThread ...
+Destroying BaseThread ...

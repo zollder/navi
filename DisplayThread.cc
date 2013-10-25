@@ -55,7 +55,7 @@
 			}
 			else
 			{
-//				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
+				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
 
 				// fetch navi data from shared object
 //				mutex.lock();
