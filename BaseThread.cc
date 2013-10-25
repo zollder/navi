@@ -18,6 +18,14 @@
 		setChannelId(createChannel());
 		mutex = mutex_r;
 		naviData = naviData_p;
+
+		// CPU frequency and start time initialization
+		cpu_freq =  SYSPAGE_ENTRY(qtime)->cycles_per_sec;
+		startTime = time(NULL);
+
+		// initialize local data holders
+		x = 0; y = 0; z = 0;
+		Vx = 0; Vy = 0; Vz = 0;
 	}
 
 	//-----------------------------------------------------------------------------------------

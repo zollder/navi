@@ -28,7 +28,9 @@ class Mutex
 		virtual ~Mutex()
 		{
 			printf("Destroying mutex ...\n");
-			pthread_mutex_destroy(&mutex);
+			int status = pthread_mutex_destroy(&mutex);
+			if (status != 0)
+				printf("Error destroying mutex");
 		}
 
 		//-----------------------------------------------------------------------------------------
