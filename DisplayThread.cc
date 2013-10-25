@@ -34,7 +34,7 @@
 		string buffer[8];
 
 		int counter = 0;
-		while(counter < (duration))
+		while(counter < (duration+1))
 		{
 			// wait for the pulse to fire
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
@@ -62,7 +62,7 @@
 				mutex.unlock();
 
 				// Display distance and velocity (shared data object)
-				printf("Distance: x: %f, y: %f, z: %f \n",x,y,z);
+				printf("Distance: x: %f, y: %f, z: %f \n", x, y, z);
 				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n", Vx, Vy, Vz);
 
 				//Clock stamp execution stop

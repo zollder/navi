@@ -19,12 +19,12 @@
 		printf("Constructing AcceleratorThread ...\n");
 
 		// initialize accelerator data holders
-		acceleratorDataX = new double[duration];
-		acceleratorDataY = new double[duration];
-		acceleratorDataZ = new double[duration];
+		acceleratorDataX = new double[duration*3];
+		acceleratorDataY = new double[duration*3];
+		acceleratorDataZ = new double[duration*3];
 
 		// fill arrays with dummy sensor data (for simulation purposes only)
-		for (int i = 0; i <= duration; i++)
+		for (int i = 0; i <= duration*3; i++)
 		{
 			acceleratorDataX[i] = 20 + log(i+1);
 			acceleratorDataY[i] = 20 + log(i+2);
@@ -50,7 +50,7 @@
 		string buffer[8];
 
 		int counter = 0;
-		while(counter != 3*duration)
+		while(counter != duration*3)
 		{
 			// wait for the pulse to fire
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);

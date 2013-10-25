@@ -23,7 +23,7 @@ class BaseThread
 	//-----------------------------------------------------------------------------------------
 	public:
 
-		static const int duration = 3;
+		static const int duration = 5;
 		static const float gravity = 9.8;
 		static const double interval = 2;
 
