@@ -1,7 +1,7 @@
 navi
 ====
 
-Source code for a QNX navi project
+Project Requirement forthe QNX navy project
 
 Initial value of position (3D co-ordinates)
 X= 0.0, Y = 0.0, Z = 0.0
@@ -78,20 +78,20 @@ Submit the following on the day of project demonstration:
 Grading
 -------
 	The program works and is well designed [8 pts]
-		-Threads for DAP and DD have been created
-		-Velocity and position variable access has been protected
-		-Timer classes created and objects instantiated, connected to DAP and DD
+		-Threads for DAP and DD have been created									(done)
+		-Velocity and position variable access has been protected					(done)
+		-Timer classes created and objects instantiated, connected to DAP and DD	(done)
 		-Must run for 30 seconds
-			*Display all timer pulses and their time annotation
-		-Minimum needed to pass the course
+			*Display all timer pulses and their time annotation	(to do)
+	
 	Timing measurement [4 pts]
-		-Proper calculation of DAP and DD execution time
-		-Individual iterations only
-		-Calculate best/worst/average over 30 seconds of execution
+		-Proper calculation of DAP and DD execution time							(done)
+		-Individual iterations only													(done)
+		-Calculate best/worst/average over 30 seconds of execution  				(done)
 	Understanding of the design [4 pts]
 		-Based on Q&A at the time of demonstration
 		-Grades may be different for students in the same group
-		
+			
 References
 ----------
 [1] QNX: http://www.qnx.com
