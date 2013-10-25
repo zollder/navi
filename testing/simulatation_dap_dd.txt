@@ -1,0 +1,230 @@
+Main thread started!
+Initializing mutex ...
+Initializing NaviData ... 
+Constructing BaseThread ...
+Channel successfully created 
+Constructing DisplayThread ...
+Constructing BaseThread ...
+Channel successfully created 
+Constructing AcceleratorThread ...
+Ax: 20.000000, Ay: 20.693147, Az 9.000000 
+Ax: 20.693147, Ay: 21.098612, Az 11.079442 
+Ax: 21.098612, Ay: 21.386294, Az 12.295837 
+Ax: 21.386294, Ay: 21.609438, Az 13.158883 
+Ax: 21.609438, Ay: 21.791759, Az 13.828314 
+Ax: 21.791759, Ay: 21.945910, Az 14.375278 
+Ax: 21.945910, Ay: 22.079442, Az 14.837730 
+Ax: 22.079442, Ay: 22.197225, Az 15.238325 
+Ax: 22.197225, Ay: 22.302585, Az 15.591674 
+Ax: 22.302585, Ay: 22.397895, Az 15.907755 
+Ax: 22.397895, Ay: 22.484907, Az 16.193686 
+Ax: 22.484907, Ay: 22.564949, Az 16.454720 
+Ax: 22.564949, Ay: 22.639057, Az 16.694848 
+Ax: 22.639057, Ay: 22.708050, Az 16.917172 
+Ax: 22.708050, Ay: 22.772589, Az 17.124151 
+Ax: 22.772589, Ay: 22.833213, Az 17.317766 
+Ax: 22.833213, Ay: 22.890372, Az 17.499640 
+Ax: 22.890372, Ay: 22.944439, Az 17.671115 
+Ax: 22.944439, Ay: 22.995732, Az 17.833317 
+Ax: 22.995732, Ay: 23.044522, Az 17.987197 
+Ax: 23.044522, Ay: 23.091042, Az 18.133567 
+Ax: 23.091042, Ay: 23.135494, Az 18.273127 
+Ax: 23.135494, Ay: 23.178054, Az 18.406483 
+Ax: 23.178054, Ay: 23.218876, Az 18.534161 
+Ax: 23.218876, Ay: 23.258097, Az 18.656627 
+Ax: 23.258097, Ay: 23.295837, Az 18.774290 
+Ax: 23.295837, Ay: 23.332205, Az 18.887511 
+Ax: 23.332205, Ay: 23.367296, Az 18.996614 
+Ax: 23.367296, Ay: 23.401197, Az 19.101887 
+Ax: 23.401197, Ay: 23.433987, Az 19.203592 
+Ax: 23.433987, Ay: 23.465736, Az 19.301962 
+Creating and initializing PulseTimer ...
+Connection attached successfully 
+Timer created successfully 
+Creating and initializing PulseTimer ...
+Connection attached successfully 
+Timer created successfully 
+
+
+	-------------Begin---------------
+
+Timer started 
+Timer started 
+
+Display pulse 1 received at time 1 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000409 seconds
+
+
+Accelerator pulse 1 received at time 1 seconds
+Accelerator Execution time 0.000848 seconds
+
+Accelerator pulse 2 received at time 3 seconds
+Accelerator Execution time 0.000793 seconds
+
+Accelerator pulse 3 received at time 5 seconds
+Accelerator Execution time 0.000811 seconds
+
+Display pulse 2 received at time 7 seconds
+Distance: x: 489.939627, y: 502.651842, z: 10.618875 
+Velocity: Vx: 123.583519, Vy: 126.356108, Vz: 5.950556 
+Display Execution time 0.000310 seconds
+
+
+Accelerator pulse 4 received at time 7 seconds
+Accelerator Execution time 0.000816 seconds
+
+Accelerator pulse 5 received at time 9 seconds
+Accelerator Execution time 0.000778 seconds
+
+Accelerator pulse 6 received at time 11 seconds
+Accelerator Execution time 0.000798 seconds
+
+Display pulse 3 received at time 13 seconds
+Distance: x: 1748.118814, y: 1782.219459, z: 137.156425 
+Velocity: Vx: 253.158502, Vy: 257.050323, Vz: 29.875505 
+Display Execution time 0.000373 seconds
+
+
+Accelerator pulse 7 received at time 13 seconds
+Accelerator Execution time 0.000800 seconds
+
+Accelerator pulse 8 received at time 15 seconds
+Accelerator Execution time 0.000802 seconds
+
+Accelerator pulse 9 received at time 17 seconds
+Accelerator Execution time 0.000848 seconds
+
+Display pulse 4 received at time 19 seconds
+Distance: x: 3795.845181, y: 3856.262831, z: 443.535508 
+Velocity: Vx: 385.603655, Vy: 390.208825, Vz: 62.410961 
+Display Execution time 0.000351 seconds
+
+
+Accelerator pulse 10 received at time 19 seconds
+Accelerator Execution time 0.000805 seconds
+
+Accelerator pulse 11 received at time 21 seconds
+Accelerator Execution time 0.000818 seconds
+
+Accelerator pulse 12 received at time 23 seconds
+Accelerator Execution time 0.000803 seconds
+
+Display pulse 5 received at time 25 seconds
+Distance: x: 6646.220920, y: 6736.429576, z: 969.062702 
+Velocity: Vx: 519.974429, Vy: 525.104328, Vz: 100.723282 
+Display Execution time 0.000371 seconds
+
+
+Accelerator pulse 13 received at time 25 seconds
+Accelerator Execution time 0.000777 seconds
+
+Accelerator pulse 14 received at time 27 seconds
+Accelerator Execution time 0.000808 seconds
+
+Accelerator pulse 15 received at time 29 seconds
+Accelerator Execution time 0.000776 seconds
+
+Display pulse 6 received at time 31 seconds
+Distance: x: 10308.791546, y: 10431.478986, z: 1742.374547 
+Velocity: Vx: 655.798543, Vy: 661.343720, Vz: 143.395623 
+Display Execution time 0.000310 seconds
+
+
+Accelerator pulse 16 received at time 31 seconds
+Accelerator Execution time 0.000776 seconds
+
+Accelerator pulse 17 received at time 33 seconds
+Accelerator Execution time 0.000770 seconds
+
+Accelerator pulse 18 received at time 35 seconds
+Accelerator Execution time 0.000777 seconds
+
+Display pulse 7 received at time 37 seconds
+Distance: x: 14791.081061, y: 14948.440598, z: 2786.043053 
+Velocity: Vx: 792.790890, Vy: 798.679768, Vz: 189.572664 
+Display Execution time 0.000339 seconds
+
+
+Accelerator pulse 19 received at time 37 seconds
+Accelerator Execution time 0.000819 seconds
+
+Accelerator pulse 20 received at time 39 seconds
+Accelerator Execution time 0.000815 seconds
+
+Accelerator pulse 21 received at time 41 seconds
+Accelerator Execution time 0.000788 seconds
+
+Display pulse 8 received at time 43 seconds
+Distance: x: 20099.303619, y: 20293.188345, z: 4118.710682 
+Velocity: Vx: 930.760278, Vy: 936.942363, Vz: 238.680825 
+Display Execution time 0.000307 seconds
+
+
+Accelerator pulse 22 received at time 43 seconds
+Accelerator Execution time 0.000797 seconds
+
+Accelerator pulse 23 received at time 45 seconds
+Accelerator Execution time 0.000863 seconds
+
+Accelerator pulse 24 received at time 47 seconds
+Accelerator Execution time 0.000777 seconds
+
+Display pulse 9 received at time 49 seconds
+Distance: x: 26238.753965, y: 26470.768385, z: 5756.261665 
+Velocity: Vx: 1069.569459, Vy: 1076.007210, Vz: 290.308367 
+Display Execution time 0.000324 seconds
+
+
+Accelerator pulse 25 received at time 49 seconds
+Accelerator Execution time 0.000775 seconds
+
+Accelerator pulse 26 received at time 51 seconds
+Accelerator Execution time 0.000777 seconds
+
+Accelerator pulse 27 received at time 53 seconds
+Accelerator Execution time 0.000826 seconds
+
+Display pulse 10 received at time 55 seconds
+Distance: x: 33214.045347, y: 33485.604320, z: 7712.535753 
+Velocity: Vx: 1209.115077, Vy: 1215.779486, Vz: 344.145221 
+Display Execution time 0.000391 seconds
+
+
+Accelerator pulse 28 received at time 55 seconds
+Accelerator Execution time 0.000993 seconds
+
+Accelerator pulse 29 received at time 57 seconds
+Accelerator Execution time 0.000848 seconds
+
+Accelerator pulse 30 received at time 59 seconds
+Accelerator Execution time 0.000924 seconds
+
+AcceleratorThread 3 done at 59 seconds
+
+DAP Worst-case execution time: 0.000993
+DAP Best-case execution time: 0.000770
+DAp Average execution time: 0.000813
+
+Display pulse 11 received at time 61 seconds
+Distance: x: 41029.265421, y: 41341.634315, z: 9999.795908 
+Velocity: Vx: 1349.316473, Vy: 1356.184447, Vz: 399.949407 
+Display Execution time 0.000320 seconds
+
+
+DisplayThread done 2
+
+DD Worst-case execution time: 0.000409
+DD Best-case execution time: 0.000307
+DD Average execution time: 0.000346
+
+
+	-------------END-----------------
+
+Destroying PulseTimer ...
+Destroying PulseTimer ...
+Destroying DisplayThread ...
+Destroying BaseThread ...
+Destroying AcceleratorThread ...
+Destroying BaseThread ...

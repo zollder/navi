@@ -32,19 +32,16 @@
 	{
 		// initialize time tracking variables
 		float elapse = 0;
-		float bcet = 0;
-		float wcet = 1;
+		float bcet = 1;
+		float wcet = 0;
 		float accumulator = 0;
+		int count = 0;
 
 		// dummy buffer
 		string buffer[8];
 
 		int counter = 0;
-<<<<<<< HEAD
-		while( ++counter <= duration)
-=======
 		while(counter < (duration+1))
->>>>>>> e722a6bc304a275f254c849668b5daf5f34f5e21
 		{
 			// wait for the pulse to fire
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
@@ -58,24 +55,10 @@
 			}
 			else
 			{
-<<<<<<< HEAD
-				printf("Display pulse %d received\n",  counter);
-
-				mutex.lock();
-				printf("Distance: x: %f, y: %f, z: %f \n",
-						naviData->getDistanceData()->x,
-						naviData->getDistanceData()->y,
-						naviData->getDistanceData()->z);
-				printf("Velocity: Vx: %f, Vy: %f, Vz: %f \n\n",
-						naviData->getVelocityData()->Vx,
-						naviData->getVelocityData()->Vy,
-						naviData->getVelocityData()->Vz);
-				mutex.unlock();
-=======
-//				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
+				printf("\nDisplay pulse %d received at time %d seconds\n",  counter+1 , time(NULL)-startTime  );
 
 				// fetch navi data from shared object
-//				mutex.lock();
+				mutex.lock();
 				x = naviData->getDistanceData()->x;
 				y = naviData->getDistanceData()->y;
 				z = naviData->getDistanceData()->z;
@@ -83,7 +66,7 @@
 				Vx = naviData->getVelocityData()->Vx;
 				Vy = naviData->getVelocityData()->Vy;
 				Vz = naviData->getVelocityData()->Vz;
-//				mutex.unlock();
+				mutex.unlock();
 
 				// Display distance and velocity (shared data object)
 				printf("Distance: x: %f, y: %f, z: %f \n", x, y, z);
@@ -97,25 +80,25 @@
 		    	printf("Display Execution time %f seconds\n\n", elapse );
 
 		    	// worst execution time tracker
-		    	if (wcet > elapse)
+		    	if (wcet < elapse)
 		    		wcet = elapse;
 		    	// best execution time tracker
-		    	if (bcet < elapse)
+		    	if (bcet > elapse)
 		    		bcet = elapse;
 		    	// exec time accumulator
 		    	accumulator = accumulator + elapse;
+		    	count++;
 
 		    	counter++;
->>>>>>> e722a6bc304a275f254c849668b5daf5f34f5e21
 			}
 		}
 
 		printf("\nDisplayThread done %lu\n", (long unsigned int)getThreadId());
 
 		// show time measurements
-		printf("\nWorst-case execution time: %f", wcet);
-		printf("\nBest-case execution time: %f", bcet);
-		printf("\nAverage execution time: %f\n", accumulator/duration);
+		printf("\nDD Worst-case execution time: %f", wcet);
+		printf("\nDD Best-case execution time: %f", bcet);
+		printf("\nDD Average execution time: %f\n", accumulator/count);
 
 		return NULL;
 	}

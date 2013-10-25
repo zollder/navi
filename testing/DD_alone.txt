@@ -1,0 +1,96 @@
+Main thread started!
+Initializing mutex ...
+Initializing NaviData ... 
+Constructing BaseThread ...
+Channel successfully created 
+Constructing DisplayThread ...
+Creating and initializing PulseTimer ...
+Connection attached successfully 
+Timer created successfully 
+
+
+	-------------Begin---------------
+
+Timer started 
+
+Display pulse 1 received at time 1 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000348 seconds
+
+
+Display pulse 2 received at time 7 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000293 seconds
+
+
+Display pulse 3 received at time 13 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000345 seconds
+
+
+Display pulse 4 received at time 19 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000755 seconds
+
+
+Display pulse 5 received at time 25 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000547 seconds
+
+
+Display pulse 6 received at time 31 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000320 seconds
+
+
+Display pulse 7 received at time 37 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000341 seconds
+
+
+Display pulse 8 received at time 43 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000415 seconds
+
+
+Display pulse 9 received at time 49 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000312 seconds
+
+
+Display pulse 10 received at time 55 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000302 seconds
+
+
+Display pulse 11 received at time 61 seconds
+Distance: x: 0.000000, y: 0.000000, z: 0.000000 
+Velocity: Vx: 0.000000, Vy: 0.000000, Vz: 0.000000 
+Display Execution time 0.000340 seconds
+
+
+DisplayThread done 2
+
+Worst-case execution time: 0.000755
+Best-case execution time: 0.000293
+Average execution time: 0.000393
+
+
+	-------------END-----------------
+
+Destroying PulseTimer ...
+Destroying DisplayThread ...
+Destroying BaseThread ...
+Destroying NaviData ... 
+Main thread done!
+Destroying mutex ...
