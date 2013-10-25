@@ -51,6 +51,7 @@
 		float bcet = 1;
 		float wcet = 0;
 		float accumulator = 0;
+		int count = 0;
 
 		// dummy buffer
 		string buffer[8];
@@ -117,6 +118,7 @@
 		    		bcet = elapse;
 		    	// exec time accumulator
 		    	accumulator = accumulator + elapse;
+		    	count++;
 
 		    	counter++;
 			}
@@ -127,7 +129,7 @@
 		// show time measurements
 		printf("\nWorst-case execution time: %f", wcet);
 		printf("\nBest-case execution time: %f", bcet);
-		printf("\nAverage execution time: %f\n", accumulator/(duration*3));
+		printf("\nAverage execution time: %f\n", accumulator/count);
 
 		return NULL;
 	}
