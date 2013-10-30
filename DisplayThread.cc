@@ -47,7 +47,7 @@
 			int receivedPulse = MsgReceivePulse(getChannelId(), &buffer, sizeof(buffer), NULL);
 
 			// clock stamp execution start
-			current_cycles = ClockCycles();
+
 
 			if (receivedPulse != 0)
 			{
@@ -59,6 +59,7 @@
 
 				// fetch navi data from shared object
 				mutex.lock();
+				current_cycles = ClockCycles();
 				x = naviData->getDistanceData()->x;
 				y = naviData->getDistanceData()->y;
 				z = naviData->getDistanceData()->z;

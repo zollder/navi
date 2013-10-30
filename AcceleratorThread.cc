@@ -71,9 +71,10 @@
 				printf("\nAccelerator pulse %d received at time %d seconds\n", counter+1 , time(NULL)-startTime );
 
 				// (measurements) clock stamp start
-				current_cycles = ClockCycles();
+
 
 				mutex.lock();
+				current_cycles = ClockCycles();
 
 				// calculate
 				Vx = naviData->getVelocityData()->Vx + acceleratorDataX[counter] * interval;
